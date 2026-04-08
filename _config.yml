@@ -1,14 +1,1 @@
-name: "AI-Specialist-Dark"
-author: "Boll"
-type: dark
-
-colors:
-  background: "#282c34"     # โทนเทาเข้ม
-  foreground: "#abb2bf"     # ตัวอักษรสีขาวนวล
-  accent: "#61afef"         # สีฟ้า (สำหรับ Keyword)
-  success: "#98c379"        # สีเขียว (สำหรับ String)
-  error: "#e06c75"          # สีแดง (สำหรับ Error/Warning)
-
-fonts:
-  family: "Fira Code, JetBrains Mono"
-  size: 14
+theme: jekyll-theme-cayman
