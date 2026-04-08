@@ -1,6 +1,1 @@
-theme:
-  primaryColor: "#FF4B4B"   # สีหลักที่เน้น
-  backgroundColor: "#0E1117" # พื้นหลังเข้ม
-  secondaryBackgroundColor: "#262730"
-  textColor: "#FAFAFA"
-  font: "sans serif"
+theme: Hacker
