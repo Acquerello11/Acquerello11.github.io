@@ -2,3 +2,7 @@ title: Hacker theme
 description: Hacker is a theme for GitHub Pages.
 google_analytics:
 theme: jekyll-theme-hacker
+
+navigation:
+  - title: "Home"
+    url: "/index.html" # หรือ "/" เฉยๆ ก็ได้ครับ
