@@ -60,4 +60,9 @@
 1. [Lab 6.2.3: Ensure Valid Input](623.md)
 2. [Lab 7.4.4: Use Data to Inform Product Decisions](744.md)
 
+# รายการงานและบทวิเคราะห์
+
+
+* 📊 [Insight](insight.html)
+
 "Keep coding and building the future" 
