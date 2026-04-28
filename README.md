@@ -48,7 +48,7 @@
 
 ### 📫 Connect with me
 
-* 📧 **Gmail:** [YourEmail@gmail.com](mailto:YourEmail@gmail.com)
+* 📧 **Gmail:** [bbjj2548@gmail.com](mailto:bbjj2548@gmail.com)
 
 ---
 
