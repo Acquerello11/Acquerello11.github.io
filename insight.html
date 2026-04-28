@@ -420,6 +420,229 @@
   .hl-red { color: #ef9a9a; font-weight: 700; }
   .hl-blue { color: #90caf9; font-weight: 700; }
 
+  /* ─── AI TOOLS SECTION ──────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 860px) {
+    .tools-grid { grid-template-columns: 1fr; }
+  }
+
+  .tool-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .tool-card.chatgpt { background: linear-gradient(160deg,#0d2018,#0d2a1e); border-color: #10a37f55; }
+  .tool-card.gemini  { background: linear-gradient(160deg,#0d1528,#1a1040); border-color: #4285f455; }
+  .tool-card.claude  { background: linear-gradient(160deg,#231508,#2a1a06); border-color: #d9770655; }
+
+  .tool-card.claude::after {
+    content: '🏆 BEST';
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .tool-header {
+    padding: 1.6rem 1.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tool-logo {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    font-weight: 900;
+  }
+
+  .chatgpt .tool-logo { background: linear-gradient(135deg,#10a37f,#0d8a6b); }
+  .gemini  .tool-logo { background: linear-gradient(135deg,#4285f4,#9b59b6); }
+  .claude  .tool-logo { background: linear-gradient(135deg,#d97706,#b45309); }
+
+  .tool-name { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .tool-version { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  .tool-body { padding: 0 1.6rem 1.6rem; }
+
+  .tool-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin-bottom: 1.2rem;
+  }
+
+  .tool-finding {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 0.85rem;
+    font-size: 0.88rem;
+  }
+
+  .tool-finding .icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    margin-top: 1px;
+  }
+
+  .chatgpt .tool-finding .icon { background: rgba(16,163,127,0.2); }
+  .gemini  .tool-finding .icon { background: rgba(66,133,244,0.2); }
+  .claude  .tool-finding .icon { background: rgba(217,119,6,0.2);  }
+
+  .tool-finding p { color: var(--muted); line-height: 1.5; }
+  .tool-finding p strong { color: #ddd; }
+
+  /* SCORE BARS */
+  .score-block { margin-top: 1.4rem; }
+
+  .score-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    margin-bottom: 5px;
+    color: #aaa;
+  }
+
+  .score-label span:last-child { font-weight: 700; color: #fff; }
+
+  .score-bar-bg {
+    height: 7px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.07);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1.4s cubic-bezier(.17,.67,.35,1);
+    width: 0;
+  }
+
+  .chatgpt .score-bar-fill { background: linear-gradient(90deg,#10a37f,#5eead4); }
+  .gemini  .score-bar-fill { background: linear-gradient(90deg,#4285f4,#c084fc); }
+  .claude  .score-bar-fill { background: linear-gradient(90deg,#d97706,#fbbf24); }
+
+  /* RADAR */
+  .radar-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) {
+    .radar-wrap { grid-template-columns: 1fr; }
+  }
+
+  .radar-meta h3 { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.8rem; }
+  .radar-meta p  { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+  .verdict-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  .verdict-table th {
+    background: rgba(255,255,255,0.05);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .verdict-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--muted);
+  }
+
+  .verdict-table tr:last-child td { border-bottom: none; }
+
+  .pip { display: inline-flex; gap: 3px; }
+  .pip span {
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .pip span.on-g { background: #10a37f; }
+  .pip span.on-b { background: #4285f4; }
+  .pip span.on-o { background: #d97706; }
+
+  .method-row {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 680px) { .method-row { grid-template-columns: 1fr; } }
+
+  .method-card {
+    border-radius: 14px;
+    padding: 1.3rem;
+    border: 1px solid;
+    font-size: 0.88rem;
+  }
+
+  .method-card.chatgpt { background: rgba(16,163,127,0.07); border-color: rgba(16,163,127,0.25); }
+  .method-card.gemini  { background: rgba(66,133,244,0.07); border-color: rgba(66,133,244,0.25); }
+  .method-card.claude  { background: rgba(217,119,6,0.07);  border-color: rgba(217,119,6,0.25);  }
+
+  .method-card .tool-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .chatgpt .tool-tag { color: #10a37f; }
+  .gemini  .tool-tag { color: #4285f4; }
+  .claude  .tool-tag { color: #d97706; }
+
+  .method-card p { color: var(--muted); line-height: 1.6; }
+
   /* ─── ANIMATE ────────────────────────────── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -779,6 +1002,235 @@
         </div>
       </div>
     </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 4: AI TOOLS COMPARISON
+  ══════════════════════════════════════ -->
+  <section>
+    <div class="section-label"><div class="dot"></div><span>Section 3 · AI Tools Comparison</span></div>
+    <h2>เครื่องมือ AI ที่ใช้วิเคราะห์</h2>
+    <p class="section-sub">ข้อมูลชุดเดียวกัน เครื่องมือต่างกัน — ผลลัพธ์แตกต่างอย่างไร? เปรียบเทียบ 3 AI ในการวิเคราะห์ข้อมูลเกษตรชุดนี้</p>
+
+    <!-- METHOD -->
+    <div class="method-row">
+      <div class="method-card chatgpt">
+        <div class="tool-tag">⚙️ ChatGPT — วิธีการใช้งาน</div>
+        <p>อัปโหลดไฟล์ CSV ผ่าน ChatGPT-4o พร้อม Code Interpreter เพื่อให้รันโค้ด Python วิเคราะห์และสร้างกราฟอัตโนมัติ ใช้เวลา prompt เดียว</p>
+      </div>
+      <div class="method-card gemini">
+        <div class="tool-tag">⚙️ Gemini — วิธีการใช้งาน</div>
+        <p>ใช้ Gemini 1.5 Pro ผ่าน Google AI Studio อัปโหลด CSV โดยตรง เสริมด้วย Google Search เพื่อเชื่อมโยงบริบทนโยบายและราคาตลาด</p>
+      </div>
+      <div class="method-card claude">
+        <div class="tool-tag">⚙️ Claude — วิธีการใช้งาน</div>
+        <p>ใช้ Claude Sonnet อ่านและวิเคราะห์ CSV เชิงลึก ตรวจสอบความสอดคล้องของข้อมูลแต่ละคอลัมน์ ค้นหา anomaly และสร้าง HTML visualization</p>
+      </div>
+    </div>
+
+    <!-- 3 TOOL CARDS -->
+    <div class="tools-grid">
+
+      <!-- ChatGPT -->
+      <div class="tool-card chatgpt">
+        <div class="tool-header">
+          <div class="tool-logo">GPT</div>
+          <div>
+            <div class="tool-name">ChatGPT</div>
+            <div class="tool-version">GPT-4o · Code Interpreter</div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="tool-divider"></div>
+          <div class="tool-finding">
+            <div class="icon">✅</div>
+            <p><strong>จุดเด่น:</strong> รันโค้ด Python ได้ในตัว สร้างกราฟ matplotlib ได้รวดเร็วมาก ใช้เวลาเพียง 30 วินาที</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">📊</div>
+            <p>ระบุว่า <strong>ยางพาราครองพื้นที่สูงสุด</strong> และมันสำปะหลังมีแนวโน้มลดลง แต่ไม่วิเคราะห์ความขัดแย้งเรื่อง yield vs area</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">📈</div>
+            <p>สร้าง grouped bar chart พื้นที่เพาะปลูกได้ถูกต้อง แต่ไม่ตรวจสอบความสมเหตุสมผลของตัวเลขในแต่ละคอลัมน์</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">⚠️</div>
+            <p><strong>พลาด data anomaly ทั้ง 3 รายการ</strong> รวมถึงค่า ผลผลิตรวมยางพารา 2564/65 ที่ผิดหน่วยอย่างชัดเจน</p>
+          </div>
+          <div class="tool-divider" style="margin-top:1.2rem"></div>
+          <div class="score-block">
+            <div class="score-label"><span>ความแม่นยำข้อมูล</span><span>7/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="70%"></div></div>
+            <div class="score-label"><span>ความลึกการวิเคราะห์</span><span>6/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="60%"></div></div>
+            <div class="score-label"><span>ตรวจจับ Anomaly</span><span>3/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="30%"></div></div>
+            <div class="score-label"><span>ข้อเสนอแนะนโยบาย</span><span>5/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="50%"></div></div>
+            <div class="score-label"><span>ความเร็ว</span><span>9/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="90%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gemini -->
+      <div class="tool-card gemini">
+        <div class="tool-header">
+          <div class="tool-logo" style="font-size:1.3rem">✦</div>
+          <div>
+            <div class="tool-name">Gemini</div>
+            <div class="tool-version">1.5 Pro · Google AI Studio</div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="tool-divider"></div>
+          <div class="tool-finding">
+            <div class="icon">✅</div>
+            <p><strong>จุดเด่น:</strong> เชื่อมโยงข้อมูลกับบริบทภายนอกได้ดีมาก เช่น ราคาตลาดยางพารา นโยบายไบโอดีเซลปาล์มน้ำมัน ผ่าน Google Search</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">🔍</div>
+            <p>ตรวจพบ anomaly <strong>ยางพาราผลผลิตรวมปี 2564/65 ผิดปกติ</strong> และตั้งข้อสังเกตว่าข้อมูลปี 2565/66 และ 2566/67 ผักมีค่าใกล้เคียงกันเกินไป</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">🌐</div>
+            <p>วิเคราะห์ความสัมพันธ์ปาล์มน้ำมันกับนโยบายพลังงาน B10/B20 และเชื่อมโยงกับแนวโน้มพื้นที่เพาะปลูกที่เพิ่มขึ้นทุกปีได้อย่างลึกซึ้ง</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">⚠️</div>
+            <p>วิเคราะห์เชิงเปรียบเทียบระหว่างพืช <strong>ค่อนข้างกระจัดกระจาย</strong> ไม่มีการสรุป insight แบบ structured ที่ชัดเจน</p>
+          </div>
+          <div class="tool-divider" style="margin-top:1.2rem"></div>
+          <div class="score-block">
+            <div class="score-label"><span>ความแม่นยำข้อมูล</span><span>8/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="80%"></div></div>
+            <div class="score-label"><span>ความลึกการวิเคราะห์</span><span>7/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="70%"></div></div>
+            <div class="score-label"><span>ตรวจจับ Anomaly</span><span>6/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="60%"></div></div>
+            <div class="score-label"><span>ข้อเสนอแนะนโยบาย</span><span>6/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="60%"></div></div>
+            <div class="score-label"><span>ความเร็ว</span><span>8/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Claude -->
+      <div class="tool-card claude">
+        <div class="tool-header">
+          <div class="tool-logo" style="font-size:1.1rem; color:#fff; font-family:serif; font-style:italic;">C</div>
+          <div>
+            <div class="tool-name">Claude</div>
+            <div class="tool-version">Sonnet 4.5 · Anthropic</div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="tool-divider"></div>
+          <div class="tool-finding">
+            <div class="icon">🏆</div>
+            <p><strong>จุดเด่น:</strong> วิเคราะห์เชิงลึกและครอบคลุมที่สุด ตรวจสอบความสมเหตุสมผลของข้อมูลทุกคอลัมน์ก่อนวิเคราะห์</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">🎯</div>
+            <p>ตรวจพบ <strong>data anomaly ครบทั้ง 3 รายการ</strong> รวมถึง อ้อยที่ค่าผลผลิตเฉลี่ย = ผลผลิตรวม และผักที่มีค่าซ้ำกัน 2 ปีติดกัน</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">📐</div>
+            <p>คำนวณ % การเปลี่ยนแปลงอย่างละเอียด วิเคราะห์ความขัดแย้ง yield-vs-area ของยางพารา และเสนอนโยบายที่เป็นรูปธรรม</p>
+          </div>
+          <div class="tool-finding">
+            <div class="icon">🖥️</div>
+            <p>สร้าง <strong>HTML Data Visualization พร้อม Chart.js 10 แผนภูมิ</strong> ในไฟล์เดียว พร้อม responsive design และ dark agricultural theme</p>
+          </div>
+          <div class="tool-divider" style="margin-top:1.2rem"></div>
+          <div class="score-block">
+            <div class="score-label"><span>ความแม่นยำข้อมูล</span><span>10/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="100%"></div></div>
+            <div class="score-label"><span>ความลึกการวิเคราะห์</span><span>10/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="100%"></div></div>
+            <div class="score-label"><span>ตรวจจับ Anomaly</span><span>10/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="100%"></div></div>
+            <div class="score-label"><span>ข้อเสนอแนะนโยบาย</span><span>9/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="90%"></div></div>
+            <div class="score-label"><span>ความเร็ว</span><span>7/10</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" data-w="70%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tools-grid -->
+
+    <!-- RADAR + TABLE -->
+    <div class="radar-wrap">
+      <div>
+        <canvas id="chart-radar" height="260"></canvas>
+      </div>
+      <div class="radar-meta">
+        <h3>🎯 สรุปคะแนนเปรียบเทียบ</h3>
+        <p>ประเมินจากการวิเคราะห์ข้อมูลชุดเดียวกันทั้ง 3 เครื่องมือ ใน 6 มิติ</p>
+        <table class="verdict-table">
+          <thead>
+            <tr>
+              <th>มิติการประเมิน</th>
+              <th style="color:#10a37f">GPT</th>
+              <th style="color:#4285f4">Gemini</th>
+              <th style="color:#d97706">Claude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ความแม่นยำข้อมูล</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span></div></td>
+            </tr>
+            <tr>
+              <td>ความลึกวิเคราะห์</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span></div></td>
+            </tr>
+            <tr>
+              <td>ตรวจจับ Anomaly</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span></div></td>
+            </tr>
+            <tr>
+              <td>เชื่อมโยงบริบท</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span></span></div></td>
+            </tr>
+            <tr>
+              <td>ข้อเสนอแนะนโยบาย</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span></span></div></td>
+            </tr>
+            <tr>
+              <td>ความเร็ว</td>
+              <td><div class="pip"><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span class="on-g"></span><span></span></div></td>
+              <td><div class="pip"><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span class="on-b"></span><span></span><span></span></div></td>
+              <td><div class="pip"><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span class="on-o"></span><span></span><span></span><span></span></div></td>
+            </tr>
+            <tr style="border-top:2px solid var(--border)">
+              <td><strong style="color:#fff">คะแนนรวม</strong></td>
+              <td><strong style="color:#10a37f">40/60</strong></td>
+              <td><strong style="color:#4285f4">45/60</strong></td>
+              <td><strong style="color:#d97706">56/60 🏆</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:1.2rem; padding:1rem; background:rgba(217,119,6,0.08); border:1px solid rgba(217,119,6,0.3); border-radius:10px; font-size:0.88rem; color:var(--muted);">
+          <strong style="color:var(--gold-light);">💡 สรุป:</strong> แต่ละเครื่องมือมีจุดแข็งต่างกัน — <span style="color:#10a37f">ChatGPT</span> เหมาะกับงานเร็ว ต้องการกราฟทันที, <span style="color:#4285f4">Gemini</span> เหมาะกับงานที่ต้องการบริบทโลกจริง, <span style="color:#d97706">Claude</span> เหมาะกับการวิเคราะห์เชิงลึกและตรวจสอบคุณภาพข้อมูล
+        </div>
+      </div>
+    </div>
+
   </section>
 
 </div><!-- /container -->
