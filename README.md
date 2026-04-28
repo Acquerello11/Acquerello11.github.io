@@ -52,4 +52,12 @@
 
 ---
 
+ยินดีต้อนรับสู่หน้ารวม Lab Report ของคุณ! คุณสามารถคลิกเข้าไปดูเนื้อหาของแต่ละแล็บได้ที่ลิงก์ด้านล่างนี้:
+
+---
+
+### รายการแล็บปฏิบัติการ
+1. [Lab 6.2.3: Ensure Valid Input](623.md)
+2. [Lab 7.4.4: Use Data to Inform Product Decisions](744.md)
+
 "Keep coding and building the future" 
