@@ -653,6 +653,31 @@
   .delay-1 { animation-delay: 0.1s; }
   .delay-2 { animation-delay: 0.2s; }
   .delay-3 { animation-delay: 0.3s; }
+
+  /* ปุ่มย้อนกลับ */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--card);
+    color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.back-btn:hover {
+    background-color: var(--gold);
+    color: var(--bg);
+    cursor: pointer;
+    transform: translateY(-2px);
+}
 </style>
 </head>
 <body>
@@ -1237,6 +1262,7 @@
 
 <footer>
   <p>📊 วิเคราะห์โดย Claude AI · ข้อมูล: ไฟล์ CSV 2562–2567 · ภาพจาก <a href="https://unsplash.com" target="_blank">Unsplash</a></p>
+  <a href="/" class="back-btn">← หน้าแรก</a>
   <p style="margin-top:0.3rem">สร้างด้วย Chart.js · 2024</p>
 </footer>
 
