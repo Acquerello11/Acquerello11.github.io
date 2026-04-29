@@ -135,6 +135,30 @@
     font-size: 1.2rem;
     color: rgba(255,255,255,0.5);
   }
+
+   /* ปุ่มย้อนกลับ */
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--card);
+    color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  }
+  .back-btn:hover {
+    background-color: var(--gold);
+    color: var(--bg);
+    cursor: pointer;
+    transform: translateY(-2px);
+ }
 </style>
 </head>
 <body>
@@ -152,6 +176,9 @@
     <div class="slide-counter" id="slideCounter">1 / 45</div>
     <button class="btn" onclick="nextSlide(event)">ถัดไป →</button>
   </div>
+  <a href="/" class="back-btn">← หน้าแรก</a>
+
+  
 
 <script>
   // ข้อมูลสไลด์ 45 หน้า ปรับปรุงเนื้อหาเชิงนิยามและกราฟพื้นที่เพาะปลูก
@@ -200,6 +227,7 @@
     "<span class='hl-gold'>สีส้ม (ปาล์มน้ำมัน)</span><br><span class='hl-sub'>สะท้อนเสถียรภาพ: มีแนวโน้มการเติบโตอย่างต่อเนื่อง ✅</span><br><img src='https://images.unsplash.com/photo-1471549154-c11ef9ce8d9c?w=800&q=80' class='slide-img' alt='Palm Oil'>",
     "แผนภูมินี้ทำหน้าที่เสมือนเงื่อนไขประกอบการตัดสินใจ<br>ให้แก่ผู้กำหนดนโยบายได้ทันที 🎯<br><img src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&q=80' class='slide-img' alt='Hero Chart'>",
   ];
+
 
   let currentIndex = 0;
   const slideText = document.getElementById('slideText');
