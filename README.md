@@ -57,12 +57,12 @@
 ---
 
 ### รายการแล็บปฏิบัติการ
-1. [Lab 6.2.3: Ensure Valid Input](623.md)
-2. [Lab 7.4.4: Use Data to Inform Product Decisions](744.md)
+1. [Lab 6.2.3: Ensure Valid Input](Ensure-Valid-Input.md)
+2. [Lab 7.4.4: Use Data to Inform Product Decisions](Use-Data-to-Inform-Product-Decisions.md)
 
 # รายการงานและบทวิเคราะห์
 
 
-* 📊 [Insight](insight.html)
+* 📊 [Insight](Agriculture Data Analysis.html)
 
 "Keep coding and building the future" 
