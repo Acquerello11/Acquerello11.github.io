@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My AI Storyteller Journey - Chonburi Agriculture</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-color: #0b1a0d;
+    --text-color: #e8f5e9;
+    --gold: #f0c040;
+    --red: #ef5350;
+    --green: #4caf50;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Sarabun', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    user-select: none;
+  }
+
+  .progress-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .slide-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .slide-content {
+    font-size: clamp(1.8rem, 4vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .slide-content.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-img {
+    max-height: 40vh;
+    max-width: 90%;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-top: 2rem;
+    border: 2px solid rgba(240,192,64,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: fadeInImg 1s ease 0.3s both;
+  }
+
+  @keyframes fadeInImg {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .hl-gold { color: var(--gold); }
+  .hl-red { color: var(--red); }
+  .hl-green { color: var(--green); }
+  .hl-sub { 
+    display: block; 
+    font-size: clamp(1.1rem, 2vw, 2.2rem); 
+    font-weight: 400; 
+    color: #a5d6a7; 
+    margin-top: 0.8rem;
+  }
+
+  .controls {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    pointer-events: none;
+  }
+
+  .btn {
+    pointer-events: auto;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-family: 'Sarabun', sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--gold);
+    color: #000;
+  }
+
+  .slide-counter {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.5);
+  }
+</style>
+</head>
+<body>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="slide-container" id="hitbox" onclick="nextSlide()">
+    <div class="slide-content" id="slideText"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="prevSlide(event)">← ย้อนกลับ</button>
+    <div class="slide-counter" id="slideCounter">1 / 45</div>
+    <button class="btn" onclick="nextSlide(event)">ถัดไป →</button>
+  </div>
+
+<script>
+  // ข้อมูลสไลด์ 45 หน้า ปรับปรุงเนื้อหาเชิงนิยามและกราฟพื้นที่เพาะปลูก
+  const slides = [
+    "เรียน อาจารย์และสวัสดีผู้เข้าร่วมรับฟังทุกท่าน",
+    "วันนี้ ผมขอนำเสนอเส้นทางการเรียนรู้...",
+    "ในฐานะนักศึกษาชั้นปีที่ 3 <span class='hl-gold'>สาขาปัญญาประดิษฐ์</span><br>มหาวิทยาลัยหัวเฉียวเฉลิมพระเกียรติ<br><img src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80' class='slide-img' alt='AI Student'>",
+    "กับภารกิจการค้นหาข้อเท็จจริง 🔍",
+    "จากชุดข้อมูลเปิด (Open Data) ด้านการเกษตร<br>ของ <span class='hl-green'>จังหวัดชลบุรี</span><br><img src='https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80' class='slide-img' alt='Chonburi Farm'>",
+    "ประจำปีเพาะปลูก 2562 – 2567 📊",
+    "ในลำดับแรก ขอชี้แจงนิยามข้อมูลที่ใช้ในการนำเสนอ...",
+    "<span class='hl-gold'>พื้นที่เพาะปลูกจังหวัดชลบุรี</span> หมายถึง<br>พื้นที่ทำการเกษตรด้านเพาะปลูกพืช<br>ในเขตพื้นที่รับผิดชอบของจังหวัดชลบุรี",
+    "แสดงสถิติเปรียบเทียบพื้นที่เพาะปลูกรวมรายปี<br><img src='https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80' class='slide-img' alt='Planting Area Graph'>",
+    "ข้อมูลพื้นที่เหล่านี้จะเป็นฐานข้อมูลสำคัญ<br>สู่การวิเคราะห์ในเชิงลึกต่อไป",
+    "ก่อนอื่น มีหลักการสำคัญประการหนึ่ง...",
+    "ที่เป็นหัวใจของวิทยาการข้อมูล นั่นคือ...",
+    "<span class='hl-red'>Garbage In, Garbage Out</span><br><img src='https://images.unsplash.com/photo-1618044733300-9472054094ee?w=800&q=80' class='slide-img' alt='Garbage Data'>",
+    "ทฤษฎีที่ระบุว่า ต่อให้สถาปัตยกรรม AI ของเรา<br>จะก้าวหน้าเพียงใด...",
+    "หากข้อมูลต้นทางปราศจากคุณภาพ 📉",
+    "ผลลัพธ์ที่ได้ย่อมนำไปสู่ความคลาดเคลื่อนเสมอ",
+    "ในการวิเคราะห์ครั้งนี้ ผมได้ประยุกต์ใช้องค์ความรู้ 2 ส่วน 💡",
+    "1. กรอบการทำงานแบบ <span class='hl-gold'>Data Analytics Lifecycle</span>",
+    "2. แนวคิดจากหนังสือ:<br><span class='hl-sub'>D.A.T.A. VISUALIZATION AS FUNCTIONAL ART</span><br><img src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80' class='slide-img' alt='Data Art Book'>",
+    "โดย ผศ.ดร.อานนท์ ศักดิ์วรวิชญ์ 📖",
+    "เราจะเริ่มต้นกระบวนการนี้ที่ <span class='hl-gold'>'ต้นน้ำ'</span> ของข้อมูล",
+    "โดยบูรณาการความรู้จาก<br><span class='hl-green'>Lab 6.2.3: Ensure Valid Input</span><br><img src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80' class='slide-img' alt='Lab Validation'>",
+    "ซึ่งเน้นย้ำถึงความสำคัญของการทำ <span class='hl-gold'>Data Validation</span>",
+    "หรือการป้องกันความผิดพลาดตั้งแต่ขั้นตอนการนำเข้าข้อมูล",
+    "ผมได้นำแนวคิดนี้ มาใช้ <span class='hl-gold'>'วิพากษ์' (Criticize)</span><br>ชุดข้อมูลของจังหวัดชลบุรี",
+    "โดยใช้ปัญญาประดิษฐ์ (Claude) เป็นเครื่องมือช่วยวิเคราะห์ 🤖",
+    "ผลการตรวจสอบพบ <span class='hl-red'>Data Anomaly</span><br>หรือความผิดปกติที่มีนัยสำคัญ 🚨",
+    "กล่าวคือ ข้อมูลพื้นที่ปลูกผักสวนครัว<br>ในปี 2565/66 และ 2566/67",
+    "มีค่าตัวเลขที่ <span class='hl-gold'>'ซ้ำกันทุกประการ'</span> ในทุกรายการพืช<br><img src='https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?w=800&q=80' class='slide-img' alt='Vegetable Anomaly'>",
+    "ซึ่งบ่งชี้ถึงข้อบกพร่องในระบบจัดเก็บข้อมูลระดับภูมิภาค 📄",
+    "หากภาครัฐนำข้อมูลที่ขาดการตรวจสอบเหล่านี้ไปใช้งาน...",
+    "การจัดสรรงบประมาณย่อมเกิดความคลาดเคลื่อนอย่างร้ายแรง 📉",
+    "เมื่อเราผ่านกระบวนการตรวจสอบและทำความสะอาดข้อมูลแล้ว",
+    "ขั้นตอนต่อไปคือ <span class='hl-gold'>การสนับสนุนการตัดสินใจ (Decision Making)</span>",
+    "ซึ่งสอดคล้องกับหลักการใน<br><span class='hl-green'>Lab 7.4.4: Use Data to Inform Product Decisions</span><br><img src='https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=800&q=80' class='slide-img' alt='Decision Matrix'>",
+    "ผมได้เปลี่ยนบริบทจากการพิจารณาสินค้าทางธุรกิจ...",
+    "มาเป็นการวิเคราะห์ <span class='hl-gold'>'พืชเศรษฐกิจเชิงยุทธศาสตร์'</span> ของชลบุรี 🌴",
+    "เพื่อพิจารณาว่าพืชชนิดใดควรได้รับการส่งเสริม<br>และชนิดใดควรเฝ้าระวัง",
+    "โดยใช้หลัก <span class='hl-gold'>Functional Art</span><br>ออกแบบกราฟเส้นแกนคู่ (Dual-line Chart) 📈",
+    "พร้อมประยุกต์ใช้จิตวิทยาสีเพื่อการสื่อสารข้อมูล 🎨",
+    "<span class='hl-red'>สีแดง (มันสำปะหลัง)</span><br><span class='hl-sub'>สะท้อนภาวะวิกฤต: พื้นที่เพาะปลูกลดลงอย่างมีนัยสำคัญ ⚠️</span><br><img src='https://images.unsplash.com/photo-1567890688869-c7ec68c09e5f?w=800&q=80' class='slide-img' alt='Cassava'>",
+    "<span class='hl-gold'>สีส้ม (ปาล์มน้ำมัน)</span><br><span class='hl-sub'>สะท้อนเสถียรภาพ: มีแนวโน้มการเติบโตอย่างต่อเนื่อง ✅</span><br><img src='https://images.unsplash.com/photo-1471549154-c11ef9ce8d9c?w=800&q=80' class='slide-img' alt='Palm Oil'>",
+    "แผนภูมินี้ทำหน้าที่เสมือนเงื่อนไขประกอบการตัดสินใจ<br>ให้แก่ผู้กำหนดนโยบายได้ทันที 🎯<br><img src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&q=80' class='slide-img' alt='Hero Chart'>",
+  ];
+
+  let currentIndex = 0;
+  const slideText = document.getElementById('slideText');
+  const progressBar = document.getElementById('progressBar');
+  const slideCounter = document.getElementById('slideCounter');
+
+  function renderSlide() {
+    slideText.classList.remove('active');
+    
+    setTimeout(() => {
+      slideText.innerHTML = slides[currentIndex];
+      slideCounter.innerText = `${currentIndex + 1} / ${slides.length}`;
+      const progress = ((currentIndex + 1) / slides.length) * 100;
+      progressBar.style.width = progress + '%';
+      
+      slideText.classList.add('active');
+    }, 150); 
+  }
+
+  function nextSlide(event) {
+    if (event) event.stopPropagation();
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      renderSlide();
+    }
+  }
+
+  function prevSlide(event) {
+    if (event) event.stopPropagation();
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderSlide();
+    }
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight' || event.key === ' ') {
+      nextSlide();
+    } else if (event.key === 'ArrowLeft') {
+      prevSlide();
+    }
+  });
+
+  window.onload = renderSlide;
+
+</script>
+
+</body>
+</html>
