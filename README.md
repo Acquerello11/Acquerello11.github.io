@@ -63,6 +63,6 @@
 # รายการงานและบทวิเคราะห์
 
 
-* 📊 [Insight](Agriculture Data Analysis.html)
+* 📊 [Insight](Agriculture-Data-Analysis.html)
 
 "Keep coding and building the future" 
