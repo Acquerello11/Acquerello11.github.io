@@ -64,5 +64,6 @@
 
 
 * 📊 [Insight](Agricultural-Data-Analysis.html)
+* 📊 [Story](Story.html)
 
 "Keep coding and building the future" 
